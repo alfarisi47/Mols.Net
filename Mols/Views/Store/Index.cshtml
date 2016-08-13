@@ -12,6 +12,6 @@
 <ul>
     @foreach (var category in Model)
     {
-        <li>@Html.ActionLink(category.CategoryName, "Browse", new { category = category.CategoryName })</li>
+        <li>@Html.ActionLink(category.CategoryName, "Browse", new { categoryName = category.CategoryName })</li>
     }
 </ul>

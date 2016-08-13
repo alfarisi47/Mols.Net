@@ -23,6 +23,16 @@ namespace Mols.Models
             return categories; 
         }
 
+        public static List<Cart> Carts01()
+        {
+            var carts = new List<Cart>
+            {
+                new Cart { ItemId = 1, CartId = "SC001", QtyOrder = 1, DateCreated = DateTime.Now },
+                new Cart { ItemId = 3, CartId = "SC002", QtyOrder = 1, DateCreated = DateTime.Now }
+            };
+
+            return carts;
+        }
 
         public static List<Item> ItemDummy()
         {
@@ -111,6 +121,15 @@ namespace Mols.Models
             };
 
             return coupons;
+        }
+
+        public static List<Order> OrdersDummy()
+        {
+            var orders = new List<Order>
+            {
+
+            };
+            return orders;
         }
     }
 }

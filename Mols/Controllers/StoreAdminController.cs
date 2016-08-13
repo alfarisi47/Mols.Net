@@ -7,6 +7,7 @@ using Mols.Models;
 
 namespace Mols.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class StoreAdminController : Controller
     {
         List<Item> _items = SampleData.ItemDummy();

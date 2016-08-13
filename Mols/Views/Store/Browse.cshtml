@@ -5,12 +5,17 @@
 }
 
 <h2>Browsing Category: @Model.CategoryName</h2>
-
-<ul>
-    @foreach (var item in Model.Items)
-    {
-        <li>
-            @Html.ActionLink(item.Name, "Details", new { id = item.ItemId })
-        </li>
-    }
-</ul>
+<div class="genre">
+    <h3><em>@Model.CategoryName</em> Item</h3>
+    <ul id="album-list">
+        @foreach (var item in Model.Items)
+        {
+            <li>
+                <a href="@Url.Action("Details", new { id = item.ItemId })">
+                    <img alt="@item.Name" src="@item.ItemPictureUrl" />
+                    <span>@item.Name</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

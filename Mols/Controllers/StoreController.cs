@@ -9,14 +9,14 @@ namespace Mols.Controllers
 {
     public class StoreController : Controller
     {
-        List<Category> _categories = SampleData.CategoryDummy();
-        List<Item> _items = SampleData.ItemDummy();
+        List<Category> Categories = SampleData.CategoryDummy();
+        List<Item> Items = SampleData.ItemDummy();
         
         //
         // GET: /Store/
         public ActionResult Index()
         {          
-            return View(_categories);
+            return View(Categories);
         }
 
         //
@@ -24,8 +24,8 @@ namespace Mols.Controllers
         public ActionResult Browse(string categoryName)
         {
             // Retrieve Category and its Associated Items from database
-            var category = _categories.Where(i => i.CategoryName == categoryName).FirstOrDefault();
-            category.Items = _items.Where(i => i.CategoryId == category.CategoryId).ToList();
+            var category = Categories.Where(i => i.CategoryName == categoryName).FirstOrDefault();
+            category.Items = Items.Where(i => i.CategoryId == category.CategoryId).ToList();
 
             return View(category);
         }
@@ -35,10 +35,17 @@ namespace Mols.Controllers
         public ActionResult Details(int id)
         {
             // Retrieve Category and its Associated Items from database
-            var item = _items.Where(i => i.ItemId == id).FirstOrDefault();
+            var item = Items.Where(i => i.ItemId == id).FirstOrDefault();
 
             return View(item);
         }
-    
+
+        //
+        // GET: /Store/CategoriesMenu
+        [ChildActionOnly]
+        public ActionResult CategoriesMenu()
+        {
+            return PartialView(Categories.ToList());
+        }
     }
 }
