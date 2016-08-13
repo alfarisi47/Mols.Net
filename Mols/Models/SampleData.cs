@@ -31,6 +31,7 @@ namespace Mols.Models
                 new Item {
                     ItemId = 1,
                     CategoryId = 1,
+                    ItemCode = "ITM01",
                     Name = "Kaos Pokemon",
                     Color = "Merah",
                     Price = 100000,
@@ -40,6 +41,7 @@ namespace Mols.Models
                 new Item {
                     ItemId = 2,
                     CategoryId = 1,
+                    ItemCode = "ITM02",
                     Name = "Kaos One Piece",
                     Price = 100000,
                     StockOnHand = 12,
@@ -48,6 +50,7 @@ namespace Mols.Models
                 new Item {
                     ItemId = 3,
                     CategoryId = 2,
+                    ItemCode = "ITM03",
                     Name = "Jaket One Piece",
                     Price = 150000,
                     StockOnHand = 5,
@@ -56,6 +59,7 @@ namespace Mols.Models
                 new Item {
                     ItemId = 4,
                     CategoryId = 2,
+                    ItemCode = "ITM04",
                     Name = "Jaket Bola",
                     Price = 150000,
                     StockOnHand = 3,
@@ -64,6 +68,7 @@ namespace Mols.Models
                 new Item {
                     ItemId = 5,
                     CategoryId = 2,
+                    ItemCode = "ITM05",
                     Name = "Jaket Superman",
                     Price = 150000,
                     StockOnHand = 0,
@@ -72,6 +77,7 @@ namespace Mols.Models
                 new Item {
                     ItemId = 6,
                     CategoryId = 3,
+                    ItemCode = "ITM06",
                     Name = "Polo Shirt AS Roma",
                     Price = 100000,
                     StockOnHand = 20,
@@ -80,6 +86,7 @@ namespace Mols.Models
                 new Item {
                     ItemId = 7,
                     CategoryId = 4,
+                    ItemCode = "ITM07",
                     Name = "Hoodie Iron Man",
                     Price = 130000,
                     StockOnHand = 0,
