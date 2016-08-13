@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Mols.Models.Category>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+<h2>Index</h2>
+
+<p>
+    Select from @Model.Count() categories:
+</p>
+<ul>
+    @foreach (var category in Model)
+    {
+        <li>@Html.ActionLink(category.CategoryName, "Browse", new { category = category.CategoryName })</li>
+    }
+</ul>
