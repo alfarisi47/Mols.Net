@@ -9,24 +9,24 @@ namespace Mols.Controllers
 {
     public class StoreController : Controller
     {
+        List<Category> _categories = SampleData.CategoryDummy();
+        List<Item> _items = SampleData.ItemDummy();
+        
         //
         // GET: /Store/
         public ActionResult Index()
-        {
-            var categories = new List<Category>
-            {
-                new Category { CategoryName = "T-Shirt"},
-                new Category { CategoryName = "Jacket"},
-                new Category { CategoryName = "Polo Shirt"}
-            };
-            return View(categories);
+        {          
+            return View(_categories);
         }
 
         //
         // GET: /Store/Browse
         public ActionResult Browse(string categoryName)
         {
-            var category = new Category { CategoryName = categoryName };
+            // Retrieve Category and its Associated Items from database
+            var category = _categories.Where(i => i.CategoryName == categoryName).FirstOrDefault();
+            category.Items = _items.Where(i => i.CategoryId == category.CategoryId).ToList();
+
             return View(category);
         }
 
@@ -34,7 +34,9 @@ namespace Mols.Controllers
         // GET: /Store/Details
         public ActionResult Details(int id)
         {
-            var item = new Item { Name = "Item " + id };
+            // Retrieve Category and its Associated Items from database
+            var item = _items.Where(i => i.ItemId == id).FirstOrDefault();
+
             return View(item);
         }
     

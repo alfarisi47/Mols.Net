@@ -19,9 +19,9 @@ namespace Mols.Models
 
         public int StockInOrder { get; set; }
 
-        public string ItemPictureUrl { get; set; }
+        public string Color { get; set; }
 
-        public virtual Category Category { get; set; }
+        public string ItemPictureUrl { get; set; }
 
         //public virtual List<OrderDetail> OrderDetails { get; set; }
     }
