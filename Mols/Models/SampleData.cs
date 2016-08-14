@@ -9,7 +9,11 @@ namespace Mols.Models
     {
         public const string Nominal = "NML";
         public const string Percentage = "PTG";
-        
+
+        public const string Approved = "A";
+        public const string Submitted = "S";
+        public const string Rejected = "R";
+
         public static List<Category> CategoryDummy()
         {
             var categories = new List<Category>

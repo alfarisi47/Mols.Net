@@ -10,85 +10,115 @@ namespace Mols.Controllers
     [Authorize(Roles = "Administrator")]
     public class StoreAdminController : Controller
     {
-        List<Item> _items = SampleData.ItemDummy();
+        List<Item> Items = SampleData.ItemDummy();
+        List<Order> Orders = SampleData.OrdersDummy();
 
         // GET: StoreAdmin
         public ActionResult Index()
         {
-            return View(_items);
+            return View(Items);
         }
 
         // GET: StoreAdmin/Details/5
         public ActionResult Details(int id)
         {
-            var item = _items.Where(i => i.ItemId == id).FirstOrDefault();
+            var item = Items.Where(i => i.ItemId == id).FirstOrDefault();
             return View(item);
         }
 
         // GET: StoreAdmin/Create
         public ActionResult Create()
         {
+            ViewBag.ItemId = new SelectList(Items, "ItemId", "Name");
             return View();
         }
 
         // POST: StoreAdmin/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Item item)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                Items.Add(item);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.ItemId = new SelectList(Items, "ItemId", "Name", item.ItemId);
+            return View(item);
         }
 
         // GET: StoreAdmin/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Item item = Items.Where(i => i.ItemId == id).FirstOrDefault();
+            return View(item);
         }
 
         // POST: StoreAdmin/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Item item)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                foreach (var i in Items)
+                {
+                    if (i.ItemId == item.ItemId)
+                    {
+                        i.CategoryId = item.CategoryId;
+                        i.Color = item.Color;
+                        i.ItemPictureUrl = item.ItemPictureUrl;
+                        i.Name = item.Name;
+                        i.Price = item.Price;
+                        i.StockInOrder = item.StockInOrder;
+                        i.StockOnHand = item.StockOnHand;
+                    }
+                }
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.ItemId = new SelectList(Items, "ItemId", "Name", item.ItemId);
+            return View(item);
         }
 
         // GET: StoreAdmin/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Item item = Items.Where(i => i.ItemId == id).FirstOrDefault();
+            return View(item);
         }
 
-        // POST: StoreAdmin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // GET: StoreAdmin/ViewOrders
+        public ActionResult ViewOrders()
         {
-            try
-            {
-                // TODO: Add delete logic here
+            return View(Orders);
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        // POST: StoreAdmin/ApproveOrder/1
+        [HttpPost]
+       public ActionResult ApproveOrder(int id)
+        {
+            Order order = new Order();
+            foreach (var ord in Orders)
             {
-                return View();
+                if (ord.OrderId == id)
+                {
+                    ord.Status = SampleData.Approved;
+                }
             }
+            return View(order);
+        }
+
+        // POST: StoreAdmin/RejectOrder/1
+        [HttpPost]
+        public ActionResult RejectOrder(int id)
+        {
+            Order order = new Order();
+            foreach (var ord in Orders)
+            {
+                if (ord.OrderId == id)
+                {
+                    ord.Status = SampleData.Rejected;
+                }
+            }
+            return View(order);
         }
     }
 }

@@ -22,5 +22,6 @@ namespace Mols.Models
         public System.DateTime OrderDate { get; set; }
         public string CouponCode { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
+        public string Status { get; set; }
     }
 }
